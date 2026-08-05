@@ -1,12 +1,30 @@
+import numpy as np
 import pandas as pd
 
-df = pd.read_parquet("data/processed/market_dataset.parquet")
 
-print(df.shape)
+path = "data/processed/market_dataset.parquet"
 
-print(df.isna().sum().sum())
-print(df['Ticker'].nunique())
+df = pd.read_parquet(path)
 
-print(df['Date'].min(), df['Date'].max())
 
-print(df.head())
+print("Before:")
+print(np.isinf(df["volumne_chanage_1d"]).sum())
+
+
+df["volumne_chanage_1d"] = (
+    df["volumne_chanage_1d"]
+    .replace([np.inf, -np.inf], np.nan)
+    .fillna(0)
+)
+
+
+print("After:")
+print(np.isinf(df["volumne_chanage_1d"]).sum())
+
+
+df.to_parquet(
+    path,
+    index=False
+)
+
+print("Saved successfully")

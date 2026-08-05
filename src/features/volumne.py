@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 def add_volumne_features(df:pd.DataFrame)->pd.DataFrame:
 
@@ -8,7 +9,7 @@ def add_volumne_features(df:pd.DataFrame)->pd.DataFrame:
 
     #daily percentage change in volumne
     df['volumne_chanage_1d'] = grouped.transform(lambda x: x.pct_change()
-    )
+    ).replace([np.inf, -np.inf],np.nan).fillna(0)
 
     #rolling stats
     df['volumne_sma_5'] = grouped.transform(
