@@ -3,8 +3,8 @@ from pathlib import Path
 import joblib
 import pandas as pd
 
-MODEL_PATH = Path("models/xgboost/xgboost_model.pkl")
-FEATURE_PATH = Path("models/xgboost/feature_columns.pkl")
+MODEL_PATH = Path("saved_models/xgboost_model.pkl")
+FEATURE_PATH = Path("saved_models/feature_columns.pkl")
 
 class VolatilityPredictor:
 

@@ -33,7 +33,7 @@ data/processed/*
 *.log
 
 # Model Artifacts
-models/
+saved_models/
 checkpoints/
 artifacts/
 
