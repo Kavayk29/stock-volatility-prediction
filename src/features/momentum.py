@@ -24,7 +24,7 @@ def add_rsi(df:pd.DataFrame) -> pd.DataFrame:
     df = df.sort_values(['Ticker','Date'])
 
     df['rsi_14'] = (
-        df.groupby['Tickers']['Close'].transform(calculate_rsi)
+        df.groupby('Ticker')['Close'].transform(calculate_rsi)
     )
 
     return df

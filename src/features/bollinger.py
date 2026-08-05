@@ -10,7 +10,7 @@ def add_bollinger_bands(df:pd.DataFrame)->pd.DataFrame:
 
     df = df.sort_values(['Ticker','Date'])
 
-    grouped = df.grouped('Ticker')['Close']
+    grouped = df.groupby('Ticker')['Close']
 
     rolling_mean = grouped.transform(lambda x: x.rolling(WINDOW).mean())
 
